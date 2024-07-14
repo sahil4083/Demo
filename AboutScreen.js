@@ -13,7 +13,7 @@ const AboutScreen = () => {
           BikeKingdom is the ultimate app for bike enthusiasts. Whether you're a beginner or a professional rider, our app offers everything you need to enhance your biking experience. From tracking your rides to connecting with other bikers, BikeKingdom has it all.
         </Text>
         <Text style={styles.text}>
-          Our mission is to build a community of passionate bikers and provide them with the tools and resources they need to enjoy their rides to the fullest. Join BikeKingdom today and become part of our growing community!
+          Our mission is to build a community of a passionate bikers and provide them with the tools and resources they need to enjoy their rides to the fullest. Join BikeKingdom today and become part of our growing community!
         </Text>
       </View>
     </ImageBackground>
