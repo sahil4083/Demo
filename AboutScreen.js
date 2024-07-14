@@ -1,10 +1,10 @@
 import React from "react";
-import { Text, View, StyleSheet, ImageBackground } from "react-native";
+import { Text, View, StyleSheet, ImageBackground, Button } from "react-native";
 
-const AboutScreen = () => {
+const AboutScreen = ({ navigation }) => {
   return (
     <ImageBackground
-      source={require('./assets/download.jpg')}
+      source={require('./assets/sport.jpg')}
       style={styles.background}
     >
       <View style={styles.container}>
@@ -13,8 +13,9 @@ const AboutScreen = () => {
           BikeKingdom is the ultimate app for bike enthusiasts. Whether you're a beginner or a professional rider, our app offers everything you need to enhance your biking experience. From tracking your rides to connecting with other bikers, BikeKingdom has it all.
         </Text>
         <Text style={styles.text}>
-          Our mission is to build a community of a passionate bikers and provide them with the tools and resources they need to enjoy their rides to the fullest. Join BikeKingdom today and become part of our growing community!
+          Our mission is to build a community of passionate bikers and provide them with the tools and resources they need to enjoy their rides to the fullest. Join BikeKingdom today and become part of our growing community!
         </Text>
+        <Button title="View Bike List" onPress={() => navigation.navigate('BikeList')}></Button>
       </View>
     </ImageBackground>
   );
