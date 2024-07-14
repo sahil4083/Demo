@@ -1,11 +1,10 @@
-import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
-import { Text } from 'react-native-paper';
+import React from "react";
+import { Text, View, StyleSheet, ImageBackground } from "react-native";
 
 const AboutScreen = () => {
   return (
     <ImageBackground
-      source={require('../assets/background.jpg')}
+      source={require('./assets/download.jpg')}
       style={styles.background}
     >
       <View style={styles.container}>
@@ -29,18 +28,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)', // Semi-transparent background
+    padding: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
   },
   title: {
-    fontSize: 24,
-    marginBottom: 24,
+    fontSize: 28,
+    fontWeight: 'bold',
     textAlign: 'center',
+    marginBottom: 20,
   },
   text: {
-    fontSize: 16,
-    marginBottom: 16,
+    fontSize: 18,
     textAlign: 'center',
+    marginBottom: 10,
+    lineHeight: 24,
   },
 });
 
