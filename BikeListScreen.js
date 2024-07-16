@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
 const bikes = [
   { id: '1', name: 'Mountain Bike', image: require('./assets/images.jpg') },
-  { id: '2', name: 'Dirt Bike', image: require('./assets/picture.jpg') },
-  { id: '3', name: 'Racing Bike', image: require('./assets/sport.jpg') },
-  { id: '4', name: 'Sport Bike', image: require('./assets/download.jpg') },
-  { id: '5', name: 'Road Bike', image: require('./assets/photo.jpg') },
+  { id: '2', name: 'Dirt Bike', image: require('./assets/dirt.jpg') },
+  { id: '3', name: 'Racing Bike', image: require('./assets/racing.jpg') },
+  { id: '4', name: 'Sport Bike', image: require('./assets/sport.jpg') },
+  { id: '5', name: 'Road Bike', image: require('./assets/road.jpg') },
 ];
 
 const BikeListScreen = () => {
