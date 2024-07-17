@@ -5,11 +5,11 @@ const BikeDetailScreen = ({ route }) => {
   const { bikeId, bikeName } = route.params;
 
     const bikeDetails = {
-    '1': { name: 'Mountain Bike', description: 'Great for off-road trails.', image: require('./assets/images.jpg') },
+    '1': { name: 'Mountain Bike', description: 'Great for off-road ', image: require('./assets/images.jpg') },
     '2': { name: 'Dirt Bike', description: 'Designed for rough terrains.', image: require('./assets/dirt.jpg') },
-    '3': { name: 'Racing Bike', description: 'Built for speed on paved roads.', image: require('./assets/racing.jpg') },
-    '4': { name: 'Sport Bike', description: 'Versatile bike for various terrains.', image: require('./assets/sport.jpg') },
-    '5': { name: 'Road Bike', description: 'Ideal for long rides on smooth roads.', image: require('./assets/road.jpg') },
+    '3': { name: 'Racing Bike', description: 'Built for speed on Highway, roads.', image: require('./assets/racing.jpg') },
+    '4': { name: 'Sport Bike', description: 'Versatile bike for look,sound and performance.', image: require('./assets/sport.jpg') },
+    '5': { name: 'Road Bike', description: 'Ideal for long rides on smooth roads and best milage.', image: require('./assets/road.jpg') },
   };
 
   
