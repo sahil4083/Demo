@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const bikes = [
   { id: '1', name: 'Mountain Bike', image: require('./assets/images.jpg') },
@@ -10,13 +11,26 @@ const bikes = [
 ];
 
 const BikeListScreen = () => {
+  const navigation = useNavigation();
+
+  const handlePress = (bike) => {
+    navigation.navigate('BikeDetail', {
+      bikeId: bike.id,
+      bikeName: bike.name,
+    });
+  };
+
   return (
     <ScrollView style={styles.container}>
-      {bikes.map(bike => (
-        <View key={bike.id} style={styles.card}>
+      {bikes.map((bike) => (
+        <TouchableOpacity
+          key={bike.id}
+          style={styles.card}
+          onPress={() => handlePress(bike)}
+        >
           <Image source={bike.image} style={styles.image} />
           <Text style={styles.name}>{bike.name}</Text>
-        </View>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );
@@ -28,20 +42,20 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: 'orange',
     borderRadius: 8,
-    shadowColor: '#000',
+    shadowColor: 'white',
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 1, height: 1 },
     elevation: 2,
     marginBottom: 10,
     padding: 10,
     alignItems: 'center',
   },
   image: {
-    width: '100%',
-    height: 200,
+    width: '50%',
+    height: 100,
     borderRadius: 8,
   },
   name: {

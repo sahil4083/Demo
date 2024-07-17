@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, ImageBackground, Button } from "react-native";
 const AboutScreen = ({ navigation }) => {
   return (
     <ImageBackground
-      source={require('./assets/sport.jpg')}
+    source={{uri:"https://wallpaper.forfun.com/fetch/d1/d114d147676588f8c97509961ae07fa4.jpeg?h=900&r=0.5"}}
       style={styles.background}
     >
       <View style={styles.container}>
@@ -37,12 +37,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
+    color:"orange"
   },
   text: {
     fontSize: 18,
     textAlign: 'center',
     marginBottom: 10,
     lineHeight: 24,
+    color:"#000080"
   },
 });
 

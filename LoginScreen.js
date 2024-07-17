@@ -15,7 +15,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
-      source={require('./assets/Login.jpg')}
+      source={{uri:"https://wallpapers.com/images/high/4k-bike-rider-on-orange-bike-7pctj87kkxlg86ms.webp"}}
       style={styles.background}
     >
       <View style={styles.container}>
