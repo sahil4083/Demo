@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
 const LogoScreen = ({ navigation }) => {
+  const  navigate = useNavigation()
   useEffect(() => {
 
     setTimeout(() => {
-      navigation.replace('Login');
+      navigation.replace('SignUp');
     }, 4000);
   }, [navigation]);
 
