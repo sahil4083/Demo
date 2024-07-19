@@ -7,7 +7,7 @@ const HomeScreen = () => {
 
   return (
     <ImageBackground
-      source={require('./assets/images.jpg')}
+    source={{uri:"https://wallpapers.com/images/high/ducati-hypermotard-4k-bike-q0mbiv0zvo8098zy.webp"}}
       style={styles.background}
     >
       <View style={styles.container}>
@@ -19,7 +19,7 @@ const HomeScreen = () => {
         </View>
         <View style={styles.content}>
           <Text style={styles.title}>Welcome to BikeKingdom!</Text>
-          <Button title="About" onPress={() => navigation.navigate('About')} />
+          <Button title="About" onPress={() => navigation.navigate('About')} ></Button>
         </View>
       </View>
     </ImageBackground>
