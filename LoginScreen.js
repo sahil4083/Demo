@@ -2,9 +2,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { TextInput, Button, Text, View, StyleSheet, ImageBackground } from 'react-native';
 import { auth } from './assets/Firebase';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = ({ navigation }) => {
-  const [email, Email] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
  
@@ -34,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
         <TextInput
             placeholder="Enter Email"
             value={email}
-            onChangeText={text => Email(text)}
+            onChangeText={text =>setEmail(text)}
             style={styles.input}
           />
 

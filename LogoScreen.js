@@ -14,7 +14,7 @@ const LogoScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('./assets/Login.jpg')}
+        source={{uri:"https://img.freepik.com/premium-vector/motorcycle-tshirt-label-design-with-illustration_723616-2568.jpg?size=626&ext=jpg&ga=GA1.1.437211258.1720713982&semt=ais_user"}}
         style={styles.logo}
       />
       <Text style={styles.title}> Bike Kingdom </Text>
