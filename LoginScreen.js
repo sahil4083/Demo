@@ -49,6 +49,7 @@ const LoginScreen = ({ navigation }) => {
         </View>
         
         <Button title="Login" onPress={handleLogin}></Button>
+        <Button title="showalert" onPress={showalertalert}></Button>
       </View>
     </ImageBackground>
   );
