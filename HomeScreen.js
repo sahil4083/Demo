@@ -19,7 +19,7 @@ const HomeScreen = () => {
         </View>
         <View style={styles.content}>
           <Text style={styles.title}>Welcome to BikeKingdom!</Text>
-          <Button title="About" onPress={() => navigation.navigate('About')} ></Button>
+          <Button title="View Bike List" onPress={() => navigation.navigate('BikeList')} ></Button>
         </View>
       </View>
     </ImageBackground>

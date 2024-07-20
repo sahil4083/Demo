@@ -17,8 +17,8 @@ const LoginScreen = ({ navigation }) => {
         navigation.navigate('Home');
       })
       .catch((error) => {
-        console.error('Login error:', error.code, error.message);
-        // Show alert for incorrect email or password
+        console.error('Login error:', error.code, error.message);                             
+        
         if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
           Alert.alert('Login Failed', 'Incorrect email or password.');
         } else {
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     resizeMode: 'cover',
+    color:'gray'
   },
   container: {
     flex: 1,
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 40,
   },
-  outerBox: {
+  outerBox: { 
     backgroundColor: 'black',
     padding: 16,
     borderRadius: 8,
