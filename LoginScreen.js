@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
-import { TextInput, Button, Text, View, StyleSheet, ImageBackground } from 'react-native';
+import { TextInput, Button, Text, View, StyleSheet, ImageBackground, Alert } from 'react-native'; 
 import { auth } from './assets/Firebase';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,18 +8,23 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
- 
-
- const handleLogin=()=>{
-    signInWithEmailAndPassword(auth,email,password)
-    .then((value) => { 
-      console.log(value)
-      alert("user created successfully")
-      navigation.navigate('Home');
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => { 
+        const user = userCredential.user;
+        console.log('User logged in:', user.email);
+        alert('User logged in successfully');
+        navigation.navigate('Home');
+      })
+      .catch((error) => {
+        console.error('Login error:', error.code, error.message);                             
+        
+        if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+          Alert.alert('Login Failed', 'Incorrect email or password.');
+        } else {
+          Alert.alert('Login Failed', 'An error occurred. Please try again later.');
+        }
+      });
   }
 
   return (
@@ -27,15 +32,13 @@ const LoginScreen = ({ navigation }) => {
       source={{uri:"https://wallpapers.com/images/high/4k-bike-rider-on-orange-bike-7pctj87kkxlg86ms.webp"}}
       style={styles.background}
     >
-      
       <View style={styles.container}>
         <Text style={styles.title}>BikeKingdom Login</Text>
         <View style={styles.outerBox}>
-
-        <TextInput
+          <TextInput
             placeholder="Enter Email"
             value={email}
-            onChangeText={text =>setEmail(text)}
+            onChangeText={text => setEmail(text)}
             style={styles.input}
           />
 
@@ -58,6 +61,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     resizeMode: 'cover',
+    color:'gray'
   },
   container: {
     flex: 1,
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 40,
   },
-  outerBox: {
+  outerBox: { 
     backgroundColor: 'black',
     padding: 16,
     borderRadius: 8,

@@ -12,14 +12,14 @@ const HomeScreen = () => {
     >
       <View style={styles.container}>
         <View style={styles.personalInfo}>
-          <Text style={styles.personalText}>Name:- Sahil Prmar</Text>
+          <Text style={styles.personalText}>Name:- Sahil Parmar</Text>
           <Text style={styles.personalText}>since:- 2008</Text>
           <Text style={styles.personalText}>Mobile:- +91 1968007199</Text>
           <Text style={styles.personalText}>Email:- BikeKingdom@gmail.com</Text>
         </View>
         <View style={styles.content}>
           <Text style={styles.title}>Welcome to BikeKingdom!</Text>
-          <Button title="About" onPress={() => navigation.navigate('About')} ></Button>
+          <Button title="View Bike List" onPress={() => navigation.navigate('BikeList')} ></Button>
         </View>
       </View>
     </ImageBackground>

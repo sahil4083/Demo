@@ -15,7 +15,7 @@ const AboutScreen = ({ navigation }) => {
         <Text style={styles.text}>
           Our mission is to build a community of passionate bikers and provide them with the tools and resources they need to enjoy their rides to the fullest. Join BikeKingdom today and become part of our growing community!
         </Text>
-        <Button title="View Bike List" onPress={() => navigation.navigate('BikeList')}></Button>
+        
       </View>
     </ImageBackground>
   );
