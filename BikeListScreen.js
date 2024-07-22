@@ -13,7 +13,7 @@ const bikes = [
   { id: '8',brand:'Royal Enfield', name: 'Continental GT 650', image: require('./assets/id8.jpg') },
   { id: '9',brand:'Royal Enfield', name: 'Royal Enfield Classic 350', image: require('./assets/id9.jpg') },
   { id: '10',brand:'Royal Enfield', name: 'Royal Enfield Himalayan 450', image: require('./assets/id10.jpg') },
-  { id: '11',brand:'Bmw', name: 'BMW R 1250 GS', image: require('./assets/id11.jpg') },
+  { id: '11',brand:'BMW', name: 'BMW R 1250 GS', image: require('./assets/id11.jpg') },
   { id: '12',brand:'Yezdi', name: 'Yezdi Adventure', image: require('./assets/id12.jpg') },
 ];
 

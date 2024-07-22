@@ -36,6 +36,7 @@ const BikeDetailScreen = ({ route }) => {
   };
 
   return (
+    
     <View style={styles.container}>
       <Image source={bike.image} style={styles.image} />
       <Text style={styles.brand}>{bike.brand}</Text>
@@ -43,6 +44,7 @@ const BikeDetailScreen = ({ route }) => {
       <Text style={styles.description}>{bike.description}</Text>
       <Button title="About" onPress={() => navigation.navigate('About')} ></Button>
     </View>
+    
   );
 };
 
@@ -63,6 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    color:'white'
   },
   description: {
     fontSize: 18,
