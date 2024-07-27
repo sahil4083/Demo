@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: 'orange',
     borderRadius: 8,
-    shadowColor: 'white',
+    shadowColor: 'black',
     shadowOpacity: 0.2,
     shadowRadius: 4,
     shadowOffset: { width: 1, height: 1 },
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 10,
-    color:'white'
+    color:'yellow'
   },
 });
 
