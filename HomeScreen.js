@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 24,
-    color: 'purple'
+    color:'purple'
   },
   container: {
     flex: 1,
