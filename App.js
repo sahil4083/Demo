@@ -6,6 +6,7 @@ import LogoScreen from './LogoScreen.js';
 import LoginScreen from './LoginScreen.js';
 import Signup from './Signup.js'; 
 import HomeScreen from './HomeScreen.js';
+import PersonalInfoScreen from './PersonalInfoScreen';
 import AboutScreen from './AboutScreen.js';
 import BikeListScreen from './BikeListScreen.js';
 import BikeDetailScreen from './BikeDetailScreen.js'; 
@@ -24,6 +25,7 @@ const App = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={Signup} /> 
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="PersonalInfo" component={PersonalInfoScreen} />
         <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="BikeList" component={BikeListScreen} />
         <Stack.Screen

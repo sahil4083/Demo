@@ -1,29 +1,40 @@
 import React, { useState } from 'react';
-import { TextInput, Button, Text, View, StyleSheet, ImageBackground } from 'react-native';
+import { TextInput, Button, Text, View, StyleSheet, ImageBackground, Alert } from 'react-native';
 import { auth } from './assets/Firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from './assets/Firebase'; 
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignup = () => {
-    createUserWithEmailAndPassword(auth, email, password, username)
-      .then((value) => {
-        console.log(value);
-        alert("User created successfully");
-        navigation.navigate('Login');
-      })
-      .catch((error) => {
-        console.log(error);
-
+  const handleSignup = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(userCredential);
+      // Save username to Firestore
+      await addDoc(collection(db, 'users'), {
+        uid: userCredential.user.uid,
+        username: username,
+        email: email,
       });
-  }
+      Alert.alert('Success', 'User created successfully');
+      navigation.navigate('Home'); 
+    } catch (error) {
+      console.error('Signup error:', error);
+      Alert.alert('Signup Failed', error.message);
+    }
+  };
+
+  const navigateToLogin = () => {
+    navigation.navigate('Login'); 
+  };
 
   return (
     <ImageBackground
-      source={{ uri: "https://wallpapers.com/images/high/4k-bike-rider-on-orange-bike-7pctj87kkxlg86ms.webp" }}
+      source={{ uri: 'https://wallpapers.com/images/high/4k-bike-rider-on-orange-bike-7pctj87kkxlg86ms.webp' }}
       style={styles.background}
     >
       <View style={styles.container}>
@@ -49,7 +60,8 @@ const Signup = ({ navigation }) => {
             style={styles.input}
           />
         </View>
-        <Button title="Sign Up" onPress={handleSignup}></Button>
+        <Button title="Sign Up" onPress={handleSignup} />
+        <Button title="Already have an account? Login" onPress={navigateToLogin} color="#007BFF" />
       </View>
     </ImageBackground>
   );
