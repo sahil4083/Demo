@@ -14,7 +14,7 @@ const Signup = ({ navigation }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
-      // Save username to Firestore
+    
       await addDoc(collection(db, 'users'), {
         uid: userCredential.user.uid,
         username: username,
@@ -37,9 +37,9 @@ const Signup = ({ navigation }) => {
       source={{ uri: 'https://wallpapers.com/images/high/4k-bike-rider-on-orange-bike-7pctj87kkxlg86ms.webp' }}
       style={styles.background}
     >
-      <View style={styles.container}>
-        <Text style={styles.title}>BikeKingdom Sign Up</Text>
-        <View style={styles.outerBox}>
+      <View style={styles.overlay}>
+        <View style={styles.container}>
+          <Text style={styles.title}>BikeKingdom Sign Up</Text>
           <TextInput
             placeholder="Enter Email"
             value={email}
@@ -59,9 +59,10 @@ const Signup = ({ navigation }) => {
             secureTextEntry
             style={styles.input}
           />
+          <Button title="Sign Up" onPress={handleSignup}></Button>
+          <Text style={styles.titles}>Already have an account?</Text>
+          <Button title="Login" onPress={navigateToLogin}></Button>
         </View>
-        <Button title="Sign Up" onPress={handleSignup} />
-        <Button title="Already have an account? Login" onPress={navigateToLogin} color="#007BFF" />
       </View>
     </ImageBackground>
   );
@@ -72,29 +73,39 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
   },
-  container: {
+  overlay: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  container: {
+    width: '90%',
+    maxWidth: 400,
     padding: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    
+    borderRadius: 10,
   },
   title: {
     fontSize: 24,
     marginBottom: 24,
     textAlign: 'center',
+    color: 'white',
+  },
+  titles: {
+    fontSize: 18,
+    marginVertical: 10,
+    textAlign: 'center',
+    color: 'blue',
   },
   input: {
     marginBottom: 16,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     paddingHorizontal: 12,
     borderRadius: 8,
     height: 40,
-  },
-  outerBox: {
-    backgroundColor: 'black',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
+    borderColor: '#ddd',
+    borderWidth: 1,
   },
 });
 
