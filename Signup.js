@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 10,
     textAlign: 'center',
-    color: 'blue',
+    color: 'white',
   },
   input: {
     marginBottom: 16,

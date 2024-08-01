@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button, View, StyleSheet, ImageBackground } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
@@ -9,22 +9,26 @@ const HomeScreen = () => {
     <ImageBackground
       source={{ uri: 'https://wallpapers.com/images/high/ducati-hypermotard-4k-bike-q0mbiv0zvo8098zy.webp' }}
       style={styles.background}
-      imageStyle={styles.image} // Ensures that the image is displayed as intended
+      imageStyle={styles.image}
     >
       <View style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.title}>Welcome to BikeKingdom!</Text>
           <View style={styles.buttonContainer}>
-            <Button
-              title="Personal Info"
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => navigation.navigate('PersonalInfo')}
-            />
+            >
+              <Text style={styles.buttonText}>Personal Info</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.buttonContainer}>
-            <Button
-              title="View Bike List"
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => navigation.navigate('BikeList')}
-            />
+            >
+              <Text style={styles.buttonText}>View Bike List</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -35,18 +39,22 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    resizeMode: 'contain', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    resizeMode: 'cover', 
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  
-  
+  image: {
+    opacity: 0.8, 
+  },
   title: {
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 24,
     color: 'white',
     fontWeight: 'bold',
+    textShadowColor: '#000000',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 10,
   },
   container: {
     flex: 1,
@@ -60,6 +68,17 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginVertical: 10,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)', 
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 
