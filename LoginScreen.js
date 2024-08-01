@@ -13,7 +13,7 @@ const LoginScreen = ({ navigation }) => {
       .then((userCredential) => { 
         const user = userCredential.user;
         console.log('User logged in:', user.email);
-        alert('User logged in successfully');
+        Alert.alert('Login Successful', 'User logged in successfully');
         navigation.navigate('Home');
       })
       .catch((error) => {
@@ -32,9 +32,9 @@ const LoginScreen = ({ navigation }) => {
       source={{uri:"https://wallpapers.com/images/high/4k-bike-rider-on-orange-bike-7pctj87kkxlg86ms.webp"}}
       style={styles.background}
     >
-      <View style={styles.container}>
-        <Text style={styles.title}>BikeKingdom Login</Text>
-        <View style={styles.outerBox}>
+      <View style={styles.overlay}>
+        <View style={styles.container}>
+          <Text style={styles.title}>BikeKingdom Login</Text>
           <TextInput
             placeholder="Enter Email"
             value={email}
@@ -49,9 +49,9 @@ const LoginScreen = ({ navigation }) => {
             secureTextEntry
             style={styles.input}
           />
+          
+          <Button title="Login" onPress={handleLogin} />
         </View>
-        
-        <Button title="Login" onPress={handleLogin}></Button>
       </View>
     </ImageBackground>
   );
@@ -61,31 +61,34 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     resizeMode: 'cover',
-    color:'gray'
   },
-  container: {
+  overlay: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  container: {
+    width: '90%',
+    maxWidth: 400,
     padding: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)', 
+    borderRadius: 10,
   },
   title: {
     fontSize: 24,
     marginBottom: 24,
     textAlign: 'center',
+    color: '#FF00FF',
+    fontWeight: 'bold',
   },
   input: {
     marginBottom: 16,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     paddingHorizontal: 12,
     borderRadius: 8,
     height: 40,
-  },
-  outerBox: { 
-    backgroundColor: 'black',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
+    borderColor: '#ddd',
+    borderWidth: 1,
   },
 });
 

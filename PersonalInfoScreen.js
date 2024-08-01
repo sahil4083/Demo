@@ -6,6 +6,7 @@ const PersonalInfoScreen = ({ navigation }) => {
     <ImageBackground
       source={{ uri: 'https://wallpapers.com/images/high/ducati-hypermotard-4k-bike-q0mbiv0zvo8098zy.webp' }}
       style={styles.background}
+      imageStyle={styles.image} // Ensure that the image is displayed as intended
     >
       <View style={styles.container}>
         <Text style={styles.title}>Personal Information</Text>
@@ -28,27 +29,33 @@ const PersonalInfoScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: 'contain', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
   },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    borderRadius: 10, 
   },
   title: {
     fontSize: 24,
     marginBottom: 24,
-    color: 'purple',
+    color: 'orange',
+    fontWeight: 'bold', 
   },
   personalInfo: {
     alignItems: 'center',
+    marginBottom: 20, 
   },
   personalText: {
     fontSize: 16,
     marginBottom: 8,
     textAlign: 'center',
+    color:'white',
+    fontWeight: 'bold',  
   },
 });
 

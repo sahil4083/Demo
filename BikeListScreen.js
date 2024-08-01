@@ -1,24 +1,35 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const bikes = [
-  { id: '1',brand:'Aprilia', name: 'Aprilia RSV4', image: require('./assets/id1.jpg') },
-  { id: '2',brand:'Suzuki', name: 'Suzuki Hayabusa', image: require('./assets/id2.jpg') },
-  { id: '3',brand:'KTM', name: 'KTM 390 Duke ', image: require('./assets/id3.jpg') },
-  { id: '4',brand:'Kawasaki', name: 'Kawasaki Ninja ZX-10R', image: require('./assets/id4.jpg') },
-  { id: '5',brand:'BMW', name: 'BMW M 1000 RR', image: require('./assets/id5.jpg') },
-  { id: '6',brand:'Kawasaki', name: 'Kawasaki Ninja H2 SX', image: require('./assets/id6.jpg') },
-  { id: '7',brand:'Ducati', name: 'Ducati Panigale V4', image: require('./assets/id7.jpg') },
-  { id: '8',brand:'Royal Enfield', name: 'Continental GT 650', image: require('./assets/id8.jpg') },
-  { id: '9',brand:'Royal Enfield', name: 'Royal Enfield Classic 350', image: require('./assets/id9.jpg') },
-  { id: '10',brand:'Royal Enfield', name: 'Royal Enfield Himalayan 450', image: require('./assets/id10.jpg') },
-  { id: '11',brand:'BMW', name: 'BMW R 1250 GS', image: require('./assets/id11.jpg') },
-  { id: '12',brand:'Yezdi', name: 'Yezdi Adventure', image: require('./assets/id12.jpg') },
+  { id: '1', brand: 'Aprilia', name: 'Aprilia RSV4', image: require('./assets/id1.jpg') },
+  { id: '2', brand: 'Suzuki', name: 'Suzuki Hayabusa', image: require('./assets/id2.jpg') },
+  { id: '3', brand: 'KTM', name: 'KTM 390 Duke', image: require('./assets/id3.jpg') },
+  { id: '4', brand: 'Kawasaki', name: 'Kawasaki Ninja ZX-10R', image: require('./assets/id4.jpg') },
+  { id: '5', brand: 'BMW', name: 'BMW M 1000 RR', image: require('./assets/id5.jpg') },
+  { id: '6', brand: 'Kawasaki', name: 'Kawasaki Ninja H2 SX', image: require('./assets/id6.jpg') },
+  { id: '7', brand: 'Ducati', name: 'Ducati Panigale V4', image: require('./assets/id7.jpg') },
+  { id: '8', brand: 'Royal Enfield', name: 'Continental GT 650', image: require('./assets/id8.jpg') },
+  { id: '9', brand: 'Royal Enfield', name: 'Royal Enfield Classic 350', image: require('./assets/id9.jpg') },
+  { id: '10', brand: 'Royal Enfield', name: 'Royal Enfield Himalayan 450', image: require('./assets/id10.jpg') },
+  { id: '11', brand: 'BMW', name: 'BMW R 1250 GS', image: require('./assets/id11.jpg') },
+  { id: '12', brand: 'Yezdi', name: 'Yezdi Adventure', image: require('./assets/id12.jpg') },
 ];
 
 const BikeListScreen = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredBikes, setFilteredBikes] = useState(bikes);
   const navigation = useNavigation();
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    const filtered = bikes.filter(bike =>
+      bike.brand.toLowerCase().includes(query.toLowerCase()) ||
+      bike.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredBikes(filtered);
+  };
 
   const handlePress = (bike) => {
     navigation.navigate('BikeDetail', {
@@ -27,24 +38,42 @@ const BikeListScreen = () => {
       bikeName: bike.name,
     });
   };
-  
+
+  const navigateToAbout = () => {
+    navigation.navigate('About');
+  };
 
   return (
-    
-    <ScrollView style={styles.container}>
-      {bikes.map((bike) => (
-        <TouchableOpacity
-          key={bike.id}
-          style={styles.card}
-          onPress={() => handlePress(bike)}
-        >
-          <Image source={bike.image} style={styles.image} />
-          <Text style={styles.brand}>{bike.brand}</Text>
-          <Text style={styles.name}>{bike.name}</Text>
+    <View style={styles.container}>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search by brand or name"
+        value={searchQuery}
+        onChangeText={handleSearch}
+      />
+      <ScrollView style={styles.scrollView}>
+        {filteredBikes.length > 0 ? (
+          filteredBikes.map((bike) => (
+            <TouchableOpacity
+              key={bike.id}
+              style={styles.card}
+              onPress={() => handlePress(bike)}
+            >
+              <Image source={bike.image} style={styles.image} />
+              <Text style={styles.brand}>{bike.brand}</Text>
+              <Text style={styles.name}>{bike.name}</Text>
+            </TouchableOpacity>
+          ))
+        ) : (
+          <Text style={styles.noResults}>No bikes found.</Text>
+        )}
+      </ScrollView>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={[styles.button, styles.aboutButton]} onPress={navigateToAbout}>
+          <Text style={styles.buttonText}>About</Text>
         </TouchableOpacity>
-      ))}
-    </ScrollView>
-    
+      </View>
+    </View>
   );
 };
 
@@ -52,6 +81,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+  },
+  searchInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  scrollView: {
+    flex: 1,
   },
   card: {
     backgroundColor: 'orange',
@@ -73,14 +113,36 @@ const styles = StyleSheet.create({
   brand: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black', 
+    color: 'black',
   },
-  
   name: {
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 10,
-    color:'yellow'
+    color: 'yellow',
+  },
+  buttonContainer: {
+    padding: 10,
+    alignItems: 'center',
+  },
+  button: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginVertical: 5,
+  },
+  aboutButton: {
+    backgroundColor: '#007BFF',
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  noResults: {
+    textAlign: 'center',
+    fontSize: 18,
+    color: 'gray',
   },
 });
 
