@@ -37,6 +37,14 @@ const HomeScreen = () => {
               <Text style={styles.buttonText}>View Bike List</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('Accessories')} 
+            >
+              <Text style={styles.buttonText}>View Accessories</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ImageBackground>

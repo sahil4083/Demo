@@ -1,12 +1,13 @@
 import React from 'react';
-import { Text, View, StyleSheet, ImageBackground, Button } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, Button, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'; 
 
 const PersonalInfoScreen = ({ navigation }) => {
   return (
     <ImageBackground
       source={{ uri: 'https://wallpapers.com/images/high/ducati-hypermotard-4k-bike-q0mbiv0zvo8098zy.webp' }}
       style={styles.background}
-      imageStyle={styles.image} // Ensure that the image is displayed as intended
+      imageStyle={styles.image} 
     >
       <View style={styles.container}>
         <Text style={styles.title}>Personal Information</Text>
@@ -15,6 +16,17 @@ const PersonalInfoScreen = ({ navigation }) => {
           <Text style={styles.personalText}>Since: 2008</Text>
           <Text style={styles.personalText}>Mobile: +91 1968007199</Text>
           <Text style={styles.personalText}>Email: BikeKingdom@gmail.com</Text>
+        </View>
+        <View style={styles.socialMediaContainer}>
+          <TouchableOpacity style={styles.iconButton}>
+            <Icon name="facebook" size={30} color="#3b5998" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton}>
+            <Icon name="twitter" size={30} color="#1DA1F2" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton}>
+            <Icon name="instagram" size={30} color="#C13584" />
+          </TouchableOpacity>
         </View>
         <Button
           title="Back to Home"
@@ -56,6 +68,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color:'white',
     fontWeight: 'bold',  
+  },
+  socialMediaContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
+  iconButton: {
+    marginHorizontal: 10,
   },
 });
 
