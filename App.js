@@ -10,6 +10,7 @@ import PersonalInfoScreen from './PersonalInfoScreen';
 import AboutScreen from './AboutScreen.js';
 import BikeListScreen from './BikeListScreen.js';
 import BikeDetailScreen from './BikeDetailScreen.js'; 
+import SettingsScreen from './SettingsScreen';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,7 @@ const App = () => {
         <Stack.Screen name="PersonalInfo" component={PersonalInfoScreen} />
         <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="BikeList" component={BikeListScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen
           name="BikeDetail"
           component={BikeDetailScreen}

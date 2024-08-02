@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons'; // Import icon from vector icons
 
 const bikes = [
   { id: '1', brand: 'Aprilia', name: 'Aprilia RSV4', image: require('./assets/id1.jpg') },
@@ -20,6 +21,7 @@ const bikes = [
 const BikeListScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBikes, setFilteredBikes] = useState(bikes);
+  const [favorites, setFavorites] = useState(new Set()); 
   const navigation = useNavigation();
 
   const handleSearch = (query) => {
@@ -37,6 +39,22 @@ const BikeListScreen = () => {
       bikeBrand: bike.brand,
       bikeName: bike.name,
     });
+  };
+
+  const toggleFavorite = (bikeId) => {
+    setFavorites(prevFavorites => {
+      const updatedFavorites = new Set(prevFavorites);
+      if (updatedFavorites.has(bikeId)) {
+        updatedFavorites.delete(bikeId);
+      } else {
+        updatedFavorites.add(bikeId);
+      }
+      return updatedFavorites;
+    });
+  };
+
+  const isFavorite = (bikeId) => {
+    return favorites.has(bikeId);
   };
 
   const navigateToAbout = () => {
@@ -62,6 +80,16 @@ const BikeListScreen = () => {
               <Image source={bike.image} style={styles.image} />
               <Text style={styles.brand}>{bike.brand}</Text>
               <Text style={styles.name}>{bike.name}</Text>
+              <TouchableOpacity
+                style={styles.favoriteButton}
+                onPress={() => toggleFavorite(bike.id)}
+              >
+                <Icon
+                  name={isFavorite(bike.id) ? 'heart' : 'heart-outline'}
+                  size={24}
+                  color={isFavorite(bike.id) ? 'red' : 'gray'}
+                />
+              </TouchableOpacity>
             </TouchableOpacity>
           ))
         ) : (
@@ -143,6 +171,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     color: 'gray',
+  },
+  favoriteButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
 });
 

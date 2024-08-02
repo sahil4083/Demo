@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons'; 
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -12,6 +13,12 @@ const HomeScreen = () => {
       imageStyle={styles.image}
     >
       <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.settingsIcon}
+          onPress={() => navigation.navigate('Settings')}
+        >
+          <Icon name="settings-outline" size={30} color="white" />
+        </TouchableOpacity>
         <View style={styles.content}>
           <Text style={styles.title}>Welcome to BikeKingdom!</Text>
           <View style={styles.buttonContainer}>
@@ -39,12 +46,12 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    resizeMode: 'cover', 
+    resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
   },
   image: {
-    opacity: 0.8, 
+    opacity: 0.8,
   },
   title: {
     fontSize: 24,
@@ -72,13 +79,18 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
     padding: 10,
     borderRadius: 5,
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
+  },
+  settingsIcon: {
+    position: 'absolute',
+    top: 40,
+    right: 20,
   },
 });
 
