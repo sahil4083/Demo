@@ -8,7 +8,7 @@ const HomeScreen = () => {
 
   return (
     <ImageBackground
-      source={{ uri: 'https://wallpapers.com/images/high/ducati-hypermotard-4k-bike-q0mbiv0zvo8098zy.webp' }}
+      source={{ uri:'https://c4.wallpaperflare.com/wallpaper/98/107/682/best-bikes-boneshaker-79-wallpaper-preview.jpg'}}
       style={styles.background}
       imageStyle={styles.image}
     >

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons'; 
 
 const bikes = [
   { id: '1', brand: 'Aprilia', name: 'Aprilia RSV4', image: require('./assets/id1.jpg') },
@@ -21,7 +20,7 @@ const bikes = [
 const BikeListScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBikes, setFilteredBikes] = useState(bikes);
-  const [favorites, setFavorites] = useState(new Set()); 
+  const [favorites, setFavorites] = useState(new Set());
   const navigation = useNavigation();
 
   const handleSearch = (query) => {
@@ -84,11 +83,7 @@ const BikeListScreen = () => {
                 style={styles.favoriteButton}
                 onPress={() => toggleFavorite(bike.id)}
               >
-                <Icon
-                  name={isFavorite(bike.id) ? 'heart' : 'heart-outline'}
-                  size={24}
-                  color={isFavorite(bike.id) ? 'red' : 'gray'}
-                />
+               
               </TouchableOpacity>
             </TouchableOpacity>
           ))
@@ -109,17 +104,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    backgroundColor:'gray'
   },
   searchInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    height: 50,
+    borderColor: 'black',
+    borderWidth: 5,
+    borderRadius: 15,
+    paddingHorizontal: 5,
     marginBottom: 10,
   },
   scrollView: {
-    flex: 1,
+    flex: 4,
   },
   card: {
     backgroundColor: 'orange',
@@ -160,7 +156,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   aboutButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: 'brown',
   },
   buttonText: {
     fontSize: 16,
@@ -176,6 +172,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     right: 10,
+  },
+  favoriteText: {
+    fontSize: 24,
   },
 });
 

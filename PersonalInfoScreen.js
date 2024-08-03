@@ -19,19 +19,24 @@ const PersonalInfoScreen = ({ navigation }) => {
         </View>
         <View style={styles.socialMediaContainer}>
           <TouchableOpacity style={styles.iconButton}>
-            <Icon name="facebook" size={30} color="#3b5998" />
+            <View style={styles.iconBackground}>
+              <Icon name="facebook" size={30} color="lightblue" />
+            </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
-            <Icon name="twitter" size={30} color="#1DA1F2" />
+            <View style={styles.iconBackground}>
+              <Icon name="twitter" size={30} color="white" />
+            </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
-            <Icon name="instagram" size={30} color="#C13584" />
+            <View style={styles.iconBackground}>
+              <Icon name="instagram" size={30} color="lightpink"/>
+            </View>
           </TouchableOpacity>
         </View>
         <Button
           title="Back to Home"
           onPress={() => navigation.navigate('Home')}
-          color="#007BFF"
         />
       </View>
     </ImageBackground>
@@ -41,33 +46,32 @@ const PersonalInfoScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    resizeMode: 'contain', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    borderRadius: 10, 
+    borderRadius: 10,
   },
   title: {
     fontSize: 24,
     marginBottom: 24,
-    color: 'orange',
-    fontWeight: 'bold', 
+    color: 'blue',
+    fontWeight: 'bold',
   },
   personalInfo: {
     alignItems: 'center',
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   personalText: {
     fontSize: 16,
     marginBottom: 8,
     textAlign: 'center',
-    color:'white',
-    fontWeight: 'bold',  
+    color: 'white',
+    fontWeight: 'bold',
   },
   socialMediaContainer: {
     flexDirection: 'row',
@@ -75,6 +79,11 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     marginHorizontal: 10,
+  },
+  iconBackground: {
+    backgroundColor: 'black',
+    borderRadius: 30, 
+    padding: 10, 
   },
 });
 

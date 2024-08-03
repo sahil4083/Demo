@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, Button, Text, View, StyleSheet, ImageBackground, Alert } from 'react-native';
-import { auth } from './assets/Firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from './assets/Firebase'; 
+import { auth } from './assets/Firebase.js'; 
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -12,14 +10,10 @@ const Signup = ({ navigation }) => {
 
   const handleSignup = async () => {
     try {
+      
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
-    
-      await addDoc(collection(db, 'users'), {
-        uid: userCredential.user.uid,
-        username: username,
-        email: email,
-      });
+
       Alert.alert('Success', 'User created successfully');
       navigation.navigate('Home'); 
     } catch (error) {
@@ -59,9 +53,9 @@ const Signup = ({ navigation }) => {
             secureTextEntry
             style={styles.input}
           />
-          <Button title="Sign Up" onPress={handleSignup}></Button>
+          <Button title="Sign Up" onPress={handleSignup} />
           <Text style={styles.titles}>Already have an account?</Text>
-          <Button title="Login" onPress={navigateToLogin}></Button>
+          <Button title="Login" onPress={navigateToLogin} />
         </View>
       </View>
     </ImageBackground>
@@ -83,12 +77,11 @@ const styles = StyleSheet.create({
     width: '90%',
     maxWidth: 400,
     padding: 16,
-    
     borderRadius: 10,
   },
   title: {
-    fontSize: 24,
-    marginBottom: 24,
+    fontSize: 28,
+    marginBottom: 25,
     textAlign: 'center',
     color: 'white',
   },
