@@ -1,17 +1,24 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons'; 
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
     <ImageBackground
-      source={{ uri: 'https://wallpapers.com/images/high/ducati-hypermotard-4k-bike-q0mbiv0zvo8098zy.webp' }}
+      source={{ uri:'https://c4.wallpaperflare.com/wallpaper/98/107/682/best-bikes-boneshaker-79-wallpaper-preview.jpg'}}
       style={styles.background}
       imageStyle={styles.image}
     >
       <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.settingsIcon}
+          onPress={() => navigation.navigate('Settings')}
+        >
+          <Icon name="settings-outline" size={30} color="white" />
+        </TouchableOpacity>
         <View style={styles.content}>
           <Text style={styles.title}>Welcome to BikeKingdom!</Text>
           <View style={styles.buttonContainer}>
@@ -30,6 +37,14 @@ const HomeScreen = () => {
               <Text style={styles.buttonText}>View Bike List</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('Accessories')} 
+            >
+              <Text style={styles.buttonText}>View Accessories</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ImageBackground>
@@ -39,12 +54,12 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    resizeMode: 'cover', 
+    resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
   },
   image: {
-    opacity: 0.8, 
+    opacity: 0.8,
   },
   title: {
     fontSize: 24,
@@ -72,13 +87,18 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
     padding: 10,
     borderRadius: 5,
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
+  },
+  settingsIcon: {
+    position: 'absolute',
+    top: 40,
+    right: 20,
   },
 });
 

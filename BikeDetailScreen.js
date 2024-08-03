@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, Button, Modal, TouchableOpacity } from 'react-native';
 
 const BikeDetailScreen = ({ route, navigation }) => {
   const { bikeId } = route.params;
@@ -29,6 +29,12 @@ const BikeDetailScreen = ({ route, navigation }) => {
     );
   }
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleImagePress = () => {
+    setModalVisible(true);
+  };
+
   const handleBuyNow = () => {
     navigation.navigate('PersonalInfo', {
       bikeId: bikeId,
@@ -39,7 +45,9 @@ const BikeDetailScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={bike.image} style={styles.image} />
+      <TouchableOpacity onPress={handleImagePress}>
+        <Image source={bike.image} style={styles.image} />
+      </TouchableOpacity>
       <Text style={styles.brand}>{bike.brand}</Text>
       <Text style={styles.name}>{bike.name}</Text>
       <Text style={styles.description}>{bike.description}</Text>
@@ -50,6 +58,26 @@ const BikeDetailScreen = ({ route, navigation }) => {
           color="#FF4500"
         />
       </View>
+
+    
+      <Modal
+        visible={modalVisible}
+        transparent={true}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <TouchableOpacity
+            style={styles.modalBackground}
+            onPress={() => setModalVisible(false)}
+          >
+            <Image
+              source={bike.image}
+              style={styles.modalImage}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -68,6 +96,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 20,
   },
+  brand: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'purple',
+  },
   name: {
     fontSize: 28,
     fontWeight: 'bold',
@@ -75,7 +108,7 @@ const styles = StyleSheet.create({
     color: 'purple',
   },
   description: {
-    fontSize: 24,
+    fontSize: 18,
     textAlign: 'center',
     marginBottom: 20,
   },
@@ -86,6 +119,23 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '100%',
     paddingHorizontal: 20,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  },
+  modalBackground: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalImage: {
+    width: '90%',
+    height: '80%',
+    borderRadius: 8,
   },
 });
 

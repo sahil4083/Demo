@@ -6,7 +6,7 @@ const AboutScreen = ({ navigation }) => {
     <ImageBackground
       source={{ uri: "https://wallpaper.forfun.com/fetch/d1/d114d147676588f8c97509961ae07fa4.jpeg?h=900&r=0.5" }}
       style={styles.background}
-      imageStyle={styles.image} // Optionally customize the image styling
+      imageStyle={styles.image}
     >
       <View style={styles.overlay} />
       <View style={styles.container}>
