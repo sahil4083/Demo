@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     marginBottom: 24,
-    color: 'blue',
+    color: 'orange',
     fontWeight: 'bold',
   },
   personalInfo: {

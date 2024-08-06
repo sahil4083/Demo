@@ -20,7 +20,6 @@ const bikes = [
 const BikeListScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBikes, setFilteredBikes] = useState(bikes);
-  const [favorites, setFavorites] = useState(new Set());
   const navigation = useNavigation();
 
   const handleSearch = (query) => {
@@ -38,22 +37,6 @@ const BikeListScreen = () => {
       bikeBrand: bike.brand,
       bikeName: bike.name,
     });
-  };
-
-  const toggleFavorite = (bikeId) => {
-    setFavorites(prevFavorites => {
-      const updatedFavorites = new Set(prevFavorites);
-      if (updatedFavorites.has(bikeId)) {
-        updatedFavorites.delete(bikeId);
-      } else {
-        updatedFavorites.add(bikeId);
-      }
-      return updatedFavorites;
-    });
-  };
-
-  const isFavorite = (bikeId) => {
-    return favorites.has(bikeId);
   };
 
   const navigateToAbout = () => {
@@ -79,12 +62,6 @@ const BikeListScreen = () => {
               <Image source={bike.image} style={styles.image} />
               <Text style={styles.brand}>{bike.brand}</Text>
               <Text style={styles.name}>{bike.name}</Text>
-              <TouchableOpacity
-                style={styles.favoriteButton}
-                onPress={() => toggleFavorite(bike.id)}
-              >
-               
-              </TouchableOpacity>
             </TouchableOpacity>
           ))
         ) : (
@@ -104,7 +81,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor:'gray'
+    backgroundColor:'white'
   },
   searchInput: {
     height: 50,
@@ -167,14 +144,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     color: 'gray',
-  },
-  favoriteButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-  },
-  favoriteText: {
-    fontSize: 24,
   },
 });
 
