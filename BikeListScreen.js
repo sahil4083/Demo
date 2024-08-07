@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const bikes = [
   { id: '1', brand: 'Aprilia', name: 'Aprilia RSV4', image: require('./assets/id1.jpg') },
@@ -24,11 +25,18 @@ const BikeListScreen = () => {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    const filtered = bikes.filter(bike =>
-      bike.brand.toLowerCase().includes(query.toLowerCase()) ||
-      bike.name.toLowerCase().includes(query.toLowerCase())
+    const lowercasedQuery = query.toLowerCase();
+    const filtered = bikes.filter(
+      bike => 
+        bike.brand.toLowerCase().includes(lowercasedQuery) || 
+        bike.name.toLowerCase().includes(lowercasedQuery)
     );
     setFilteredBikes(filtered);
+  };
+
+  const clearSearch = () => {
+    setSearchQuery('');
+    setFilteredBikes(bikes);
   };
 
   const handlePress = (bike) => {
@@ -39,18 +47,21 @@ const BikeListScreen = () => {
     });
   };
 
-  const navigateToAbout = () => {
-    navigation.navigate('About');
-  };
-
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search by brand or name"
-        value={searchQuery}
-        onChangeText={handleSearch}
-      />
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search bikes..."
+          value={searchQuery}
+          onChangeText={handleSearch}
+        />
+        {searchQuery ? (
+          <TouchableOpacity onPress={clearSearch} style={styles.clearButton}>
+            <Icon name="close-circle-outline" size={20} color="gray" />
+          </TouchableOpacity>
+        ) : null}
+      </View>
       <ScrollView style={styles.scrollView}>
         {filteredBikes.length > 0 ? (
           filteredBikes.map((bike) => (
@@ -60,19 +71,16 @@ const BikeListScreen = () => {
               onPress={() => handlePress(bike)}
             >
               <Image source={bike.image} style={styles.image} />
-              <Text style={styles.brand}>{bike.brand}</Text>
-              <Text style={styles.name}>{bike.name}</Text>
+              <View style={styles.textContainer}>
+                <Text style={styles.brand}>{bike.brand}</Text>
+                <Text style={styles.name}>{bike.name}</Text>
+              </View>
             </TouchableOpacity>
           ))
         ) : (
           <Text style={styles.noResults}>No bikes found.</Text>
         )}
       </ScrollView>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, styles.aboutButton]} onPress={navigateToAbout}>
-          <Text style={styles.buttonText}>About</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };
@@ -81,20 +89,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor:'white'
+    backgroundColor: 'white',
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
   },
   searchInput: {
     height: 50,
-    borderColor: 'black',
-    borderWidth: 5,
-    borderRadius: 15,
-    paddingHorizontal: 5,
-    marginBottom: 10,
+    flex: 1,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 25,
+    paddingHorizontal: 20,
+    fontSize: 16,
+    backgroundColor: '#f5f5f5',
+    elevation: 3,
+    shadowColor: '#000', 
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+  },
+  clearButton: {
+    position: 'absolute',
+    right: 10,
   },
   scrollView: {
-    flex: 4,
+    flex: 1,
   },
   card: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: 'orange',
     borderRadius: 8,
     shadowColor: 'black',
@@ -104,41 +130,25 @@ const styles = StyleSheet.create({
     elevation: 2,
     marginBottom: 10,
     padding: 10,
-    alignItems: 'center',
   },
   image: {
-    width: '50%',
-    height: 100,
+    width: 90,
+    height: 80,
     borderRadius: 8,
   },
+  textContainer: {
+    flex: 1,
+    marginLeft: 10,
+    justifyContent: 'center',
+  },
   brand: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: 'black',
   },
   name: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: 10,
-    color: 'yellow',
-  },
-  buttonContainer: {
-    padding: 10,
-    alignItems: 'center',
-  },
-  button: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginVertical: 5,
-  },
-  aboutButton: {
-    backgroundColor: 'brown',
-  },
-  buttonText: {
     fontSize: 16,
-    color: 'white',
-    fontWeight: 'bold',
+    color: 'yellow',
   },
   noResults: {
     textAlign: 'center',

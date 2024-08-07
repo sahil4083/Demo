@@ -8,7 +8,7 @@ const LogoScreen = ({ navigation }) => {
 
     setTimeout(() => {
       navigation.replace('SignUp');
-    }, 4000);
+    }, 3000);
   }, [navigation]);
 
   return (

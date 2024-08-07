@@ -12,6 +12,10 @@ import BikeListScreen from './BikeListScreen.js';
 import BikeDetailScreen from './BikeDetailScreen.js'; 
 import SettingsScreen from './SettingsScreen';
 import AccessoriesScreen from './AccessoriesScreen';
+import ChangePasswordScreen from './ChangePasswordScreen';
+import NotificationsScreen from './NotificationsScreen';
+import PrivacyPolicyScreen from './PrivacyPolicyScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -32,7 +36,11 @@ const App = () => {
         <Stack.Screen name="BikeList" component={BikeListScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Accessories" component={AccessoriesScreen} /> 
-        <Stack.Screen
+        <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+        <Stack.Screen name="Notifications" component={NotificationsScreen} />
+        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
+        
+    <Stack.Screen
           name="BikeDetail"
           component={BikeDetailScreen}
           options={({ route }) => ({ title: route.params.bikeName })}

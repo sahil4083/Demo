@@ -24,12 +24,12 @@ const AccessoriesScreen = () => {
     setModalVisible(true);
   };
 
-  const navigateToAbout = () => {
-    navigation.navigate('About');
-  };
-
-  const handleBuyNow = (itemName) => {
-    navigation.navigate('PersonalInfo'); 
+  const handleBuyNow = (item) => {
+    navigation.navigate('PersonalInfo', {
+      accessoryName: item.name,
+      accessoryPrice: item.price,
+      accessoryImage: item.image,
+    });
   };
 
   return (
@@ -46,24 +46,20 @@ const AccessoriesScreen = () => {
                 resizeMode="cover"
               />
             </TouchableOpacity>
-            <Text style={styles.itemText}>{item.name}</Text>
-            <Text style={styles.price}>{item.price}</Text>
-            <TouchableOpacity
-              style={styles.buyButton}
-              onPress={() => handleBuyNow(item.name)}
-            >
-              <Text style={styles.buyButtonText}>Buy Now</Text>
-            </TouchableOpacity>
+            <View style={styles.textContainer}>
+              <Text style={styles.itemText}>{item.name}</Text>
+              <Text style={styles.price}>{item.price}</Text>
+              <TouchableOpacity
+                style={styles.buyButton}
+                onPress={() => handleBuyNow(item)}
+              >
+                <Text style={styles.buyButtonText}>Buy Now</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
         contentContainerStyle={styles.list}
       />
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={navigateToAbout}>
-          <Text style={styles.buttonText}>About</Text>
-        </TouchableOpacity>
-      </View>
 
       {selectedImage && (
         <Modal
@@ -92,14 +88,14 @@ const AccessoriesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
     padding: 16,
   },
   list: {
     paddingBottom: 60,
   },
   card: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
     borderRadius: 8,
@@ -112,19 +108,23 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   image: {
-    width: 80,
+    width: 90,
     height: 80,
     borderRadius: 8,
+    marginRight: 16,
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: 'center',
   },
   itemText: {
     fontSize: 18,
     color: 'black',
-    marginTop: 8,
   },
   price: {
     fontSize: 16,
     color: 'green',
-    marginTop: 4,
+    marginVertical: 4,
   },
   buyButton: {
     backgroundColor: 'brown',
@@ -134,23 +134,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   buyButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    width: '100%',
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: 'brown',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  buttonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
