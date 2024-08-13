@@ -36,7 +36,7 @@ const App = () => {
         <Stack.Screen name="BikeList" component={BikeListScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Accessories" component={AccessoriesScreen} /> 
-        <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+        <Stack.Screen name="ChangePassword" component={ChangePasswordScreen}/>
         <Stack.Screen name="Notifications" component={NotificationsScreen} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
         
